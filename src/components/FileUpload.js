@@ -22,7 +22,7 @@ const FileUpload = () => {
 
     try {
       const res = await axios.post(
-        'https://obscure-waters-43656.herokuapp.com/upload',
+        'https://obscure-waters-43656.herokuapp.com/uploads',
         formData,
         {
           headers: {
