@@ -19,7 +19,7 @@ const FileUpload = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
-
+    console.log(file);
     try {
       const res = await axios.post(
         'https://obscure-waters-43656.herokuapp.com/uploads',
