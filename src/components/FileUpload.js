@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import Message from './Message';
-import Progress from './Progess';
+import Progress from './Progress';
 import axios from 'axios';
 
 const FileUpload = () => {
@@ -21,20 +21,24 @@ const FileUpload = () => {
     formData.append('file', file);
 
     try {
-      const res = await axios.post('/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        onUploadProgress: (progressEvent) => {
-          setUploadPercentage(
-            parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
-          );
-          //Clear percentage
-          setTimeout(() => setUploadPercentage(0), 1000);
-        },
-      });
+      const res = await axios.post(
+        'https://obscure-waters-43656.herokuapp.com/upload',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          onUploadProgress: (progressEvent) => {
+            setUploadPercentage(
+              parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              )
+            );
+            //Clear percentage
+            setTimeout(() => setUploadPercentage(0), 1000);
+          },
+        }
+      );
 
       const { fileName, filePath } = res.data;
 
